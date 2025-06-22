@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../assets/syncnote_bg.webp');
+    background-repeat: repeat;
+    background-size: auto;
+    background-position: top left;
+   
+   
+}
+
+
+
+.mainContainer {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+  position: relative;
+}
+
+.heading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+   
+}
+.heading span{
+    color: blue;
+    font-weight: 750;
+}
+.heading p{
+    font-size: 16px;
+    font-weight: 500;
+}
+.card{
+    margin-top: 10px;
+    background-color: rgb(255, 255, 255);
+    gap: 10px;
+    padding: 4vh 4vw;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(236, 234, 234);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+.card button{
+    padding: 7px 30px;
+    border-radius: 10px;
+    border: none;
+    background-color: blue;
+    color: white;
+    font-size: 16px;
+    font-weight: 650;
+    cursor: pointer;
+    
+    
+}
+
+
+.card input {
+    font-size: 14.2px;
+    font-weight: 570;
+    width: 20vw;
+    padding: 8px 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 2px solid rgb(238, 237, 237);
+    margin: 3px 0px 10px 0px;
+    transition: 0.3s ease;
+    
+}
+
+.card input:focus {
+    border: 2px solid blue;
+}
+
+.formDetails{
+    margin-top: 20px;
+}
+.formDetails p{
+    font-size: 15px;
+    font-weight: 550;
+
+}
+.card .footer{
+    font-size: 14.7px;
+    font-weight: 500;
+
+}
+.footer span{
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+} 
+
+.errMsg{
+    text-align: center;
+    font-size: 13px;
+    color: red;
+}

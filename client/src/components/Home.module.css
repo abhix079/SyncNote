@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Serif+Text:ital@0;1&family=Fredoka:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Press+Start+2P&family=Special+Gothic+Expanded+One&display=swap');
+
+.mainHeading{
+    margin-top: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.mainHeading p {
+    /* margin-top: 12vh; */
+    text-align: center;
+    font-size: 60px;
+    color: orange;
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-weight: 500;
+}
+.mainHeading h3{
+   
+   font-size: 15px;
+   font-weight: 550;
+   backdrop-filter: blur(10px);
+   border: 1px solid rgb(126, 126, 126);
+   padding: 5px 40px;
+   border-radius:1rem;
+  
+
+}
+.subHead{
+    margin: 8px 0px;
+}
+
+.subHead p {
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1px;
+   
+}
+
+.startBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 7vh 0;
+}
+
+.startBtn {
+
+    font-size: 16.4px;
+    font-weight: 560;
+
+    cursor: pointer;
+     display: flex;
+    flex-direction: column;
+    gap: 13px;
+    
+   
+}
+
+
+

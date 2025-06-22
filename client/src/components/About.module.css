@@ -1,0 +1,28 @@
+.mainHeading {
+  text-align: center;
+  font-size: 19px;
+  margin: 20px 0px;
+}
+
+.mainHeading span {
+  color: orange;
+}
+
+.aboutSection {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 0 20px;
+}
+
+.aboutSection p {
+  font-size: 16.8px;
+  font-weight: 480;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.icon {
+  vertical-align: middle;
+  margin-right: 6px;
+}
