@@ -1,0 +1,30 @@
+
+.addBtn {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: 7vh 0;
+}
+
+.addBtn button {
+  font-size: 17px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 500;
+  background-color: orange;
+  cursor: pointer;
+}
+
+.blankHeading{
+    margin-top: 16vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.blankHeading h3{
+    font-size: 28px;
+    font-weight: 650;
+
+}

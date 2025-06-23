@@ -18,26 +18,38 @@ function Login() {
       });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
-      navigate("/");
+      navigate("/home");
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed");
+      setError("Login failed");
     }
   };
 
   return (
     <div className={styles.mainContainer}>
       <div className={styles.heading}>
-        <h1>Welcome to <span>SyncNote !!</span></h1>
+        <h1>
+          Welcome to <span>SyncNote !!</span>
+        </h1>
         <p>Your cloud-based note app</p>
       </div>
       <div className={styles.card}>
         <h2>Log In</h2>
         <div className={styles.formDetails}>
           <p>Username</p>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Enter your username" />
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter your username"
+          />
 
           <p>Password</p>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
+          />
 
           {error && <div className={styles.errMsg}>{error}</div>}
         </div>
@@ -45,7 +57,8 @@ function Login() {
         <button onClick={handleLogin}>Sign In</button>
 
         <div className={styles.footer}>
-          Don't have an account ? <span onClick={() => navigate("/signup")}>Register Now</span>
+          Don't have an account ?{" "}
+          <span onClick={() => navigate("/signup")}>Register Now</span>
         </div>
       </div>
     </div>

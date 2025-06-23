@@ -7,12 +7,17 @@ import { useNavigate } from "react-router-dom";
 function Navbar() {
   const navigate= useNavigate();
 
+  const handleLogout=()=>{
+    localStorage.removeItem("token");
+    window.location.replace("/login");
+  }
+
   return (
     <>
    
       <div className={styles.navbar}>
         <div className={styles.logo}>
-          <p>SyncNote</p>
+          <p onClick={()=>navigate("/home")}>SyncNote</p>
         </div>
         <div className={styles.navItems}>
           <p onClick={()=>navigate("/about")}>About</p>
@@ -20,7 +25,7 @@ function Navbar() {
           <p onClick={()=>navigate("/contact")}>Contact Us</p>
         </div>
         <div className={styles.navBtn}>
-          <button onClick={()=>navigate("/login")}>Login / Signup</button>
+          <button onClick={handleLogout}>Logout</button>
         </div>
       </div>
       <hr className={styles.navLine} />

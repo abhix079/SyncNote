@@ -19,7 +19,7 @@ function Signup() {
       password,
     });
     console.log(res.data);
-    navigate("/");
+    navigate("/home");
   } catch (err) {
     const { field, message } = err.response?.data || {};
 

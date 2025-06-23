@@ -1,0 +1,65 @@
+.mainHeading {
+    font-size: 19px;
+  text-align: center;
+  margin-top: 6vh;
+}
+
+.mainHeading h2 span {
+  color: orange;
+}
+
+.contactCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  margin: 40px auto;
+  gap: 20px;
+  border: #ccc;
+}
+
+.nameField {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.nameField input {
+  flex: 1;
+}
+
+input,
+textarea {
+    font-weight: 500;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  resize: none;
+  font-family: inherit;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+
+.submitBtn {
+  background-color: orange;
+  color: black;
+  font-weight: 500;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
