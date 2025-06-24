@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
+
+
 function Login() {
   const navigate = useNavigate();
 
@@ -20,7 +22,7 @@ function Login() {
       localStorage.setItem("user", JSON.stringify(res.data.user));
       navigate("/home");
     } catch (err) {
-      setError("Login failed");
+      setError(err.response?.data?.message||"Login failed");
     }
   };
 
@@ -32,7 +34,7 @@ function Login() {
         </h1>
         <p>Your cloud-based note app</p>
       </div>
-      <div className={styles.card}>
+      <div className={styles.card}> 
         <h2>Log In</h2>
         <div className={styles.formDetails}>
           <p>Username</p>

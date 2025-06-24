@@ -39,7 +39,7 @@ input,
 textarea {
     font-weight: 500;
   width: 100%;
-  padding: 12px;
+  padding: 7px 12px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 16px;
@@ -57,9 +57,40 @@ textarea {
   background-color: orange;
   color: black;
   font-weight: 500;
-  padding: 10px 20px;
+  padding: 8px 15px;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 16px;
   cursor: pointer;
 }
+
+/*For responsive*/
+@media (min-width: 320px) and (max-width: 550px){
+
+   .mainHeading{
+    font-size: 16px;
+  }
+
+  .contactCard{
+   
+    width: 85vw;
+    padding:  30px 20px;
+  }
+ textarea{
+  height: 20vh;
+ }
+}
+@media (min-width: 551px) and (max-width: 850px){
+    .mainHeading{
+    font-size: 17px;
+  }
+
+  .contactCard{
+   
+    width: 65vw;
+    padding:  30px 20px;
+  }
+}
+
+
+

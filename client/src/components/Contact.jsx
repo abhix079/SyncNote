@@ -2,7 +2,7 @@ import styles from "../components/Contact.module.css";
 
 function Contact(){
     return (
-        <>
+        <> 
   <div className={styles.mainHeading}>
         <h2>
          Have any <span>query?</span>

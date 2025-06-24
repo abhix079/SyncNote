@@ -1,38 +1,38 @@
 import styles from "../components/Features.module.css";
-import { AiOutlineCloudSync } from "react-icons/ai";
+import { MdOutlineCloudSync } from "react-icons/md";
+
 import { LuFileLock2 } from "react-icons/lu";
 import { MdOutlineImportantDevices } from "react-icons/md";
 import { MdColorLens } from "react-icons/md";
 
 const featuresData = [
   {
-    icon: <AiOutlineCloudSync size={80} color="orange" />,
+    icon: <MdOutlineCloudSync size={50} color="orange" />,
     title: "Cloud Sync",
     desc: [
-      "Your notes are automatically synced across all devices in real time.",
-      "Never lose your ideas again.",
+      "Your notes are automatically synced across all devices in real time."
     ],
   },
   {
-    icon: <LuFileLock2 size={80} color="orange" />,
+    icon: <LuFileLock2 size={50} color="orange" />,
     title: "Secure & Private",
     desc: [
       "End-to-end encryption ensures your thoughts remain private and secure in the cloud.",
     ],
   },
   {
-    icon: <MdOutlineImportantDevices size={80} color="orange" />,
+    icon: <MdOutlineImportantDevices size={50} color="orange" />,
     title: "Cross Platform",
     desc: [
       "Access your notes on web, mobile and desktop apps with seamless experience.",
     ],
   },
   {
-  icon: <MdColorLens size={80} color="orange" />,
+  icon: <MdColorLens size={50} color="orange" />,
   title: "Custom Themes",
   desc: [
-    "Switch between light, dark, or colorful themes.",
-    "Create a comfortable and personalized writing space.",
+
+    "Create a comfortable and personalized writing space by switching between light and dark modes."
   ],
 },
 ];
