@@ -50,7 +50,7 @@ function Signup() {
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Enter your username" />
 
           <p>Email</p>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email-id" />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email-id" required />
 
           <p>Password</p>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" />

@@ -20,16 +20,10 @@
   justify-content: space-around;
   flex-direction: row;
   padding: 10px 0;
+  /* background: url("../assets/syncnote_bg.webp"); */
  
 }
-body.light-mode .navbar {
-  background-image: url("../assets/syncnote_bg.webp");
-}
 
-body.dark-mode .navbar {
-  background-image: url("../assets/syncnoteDark.webp");
-  
-}
 
 .navItems {
   display: flex;

@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import { GoSun } from "react-icons/go";
 import { IoMoonOutline } from "react-icons/io5";
 import { LuTableOfContents } from "react-icons/lu";
+import darkBg from "../assets/syncnoteDark.webp";
+import lightBg from "../assets/syncnote_bg.webp";
+
 
 function Navbar() {
   const navigate = useNavigate();
@@ -37,7 +40,10 @@ function Navbar() {
   return (
     <>
       <div className={styles.mainContainer}>
-        <div className={styles.navbar}>
+        <div className={styles.navbar}
+        style={{
+    backgroundImage: `url(${darkMode ? darkBg : lightBg})`,
+  }}>
           <div className={styles.logo}>
             <p onClick={() => navigate("/home")}>SyncNote</p>
           </div>
@@ -65,11 +71,12 @@ function Navbar() {
         <hr className={styles.navLine} />
       </div>
 
-      {/* Sidebar + Backdrop */}
+      
       {showSidebar && (
         <>
           <div className={styles.backdrop} onClick={toggleSidebar}></div>
           <div className={styles.sidebar}>
+             <p onClick={() => { navigate("/home"); toggleSidebar(); }}>Home</p>
             <p onClick={() => { navigate("/about"); toggleSidebar(); }}>About</p>
             <p onClick={() => { navigate("/features"); toggleSidebar(); }}>Features</p>
             <p onClick={() => { navigate("/contact"); toggleSidebar(); }}>Contact Us</p>

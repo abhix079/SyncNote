@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import noteRoutes from "./routes/noteRoute.js";
 import authRoutes from "./routes/authRoute.js";
 import msgRoute from "./routes/msgRoute.js";
 import cors from "cors";
@@ -18,6 +19,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/sendMsg",msgRoute);
+app.use("/api/",noteRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello from server");

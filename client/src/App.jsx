@@ -9,7 +9,8 @@ import Signup from "./components/Signup";
 import MainPage from "./components/MainPage";
 import { Navigate } from "react-router-dom";
 
-function AppLayout() { // this is a random function creatd for the layout of the routes during render
+function AppLayout() { 
+  // this is a random function creatd for the layout of the routes during render
 
   const location = useLocation();
 

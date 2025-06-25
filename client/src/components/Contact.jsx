@@ -40,11 +40,11 @@ function Contact(){
 
       <form onSubmit={handleSubmit} className={styles.contactCard}>
         <div className={styles.nameField}>
-          <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} />
-          <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} />
+          <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange}  required/>
+          <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange}  />
         </div>
-        <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} />
-        <textarea name="message" placeholder="Your query or suggestion" value={formData.message} onChange={handleChange} />
+        <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required/>
+        <textarea name="message" placeholder="Your query or suggestion" value={formData.message} onChange={handleChange} required />
         <button type="submit" className={styles.submitBtn}>Send Message</button>
       </form>
         </>
