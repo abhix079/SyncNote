@@ -2,6 +2,7 @@ import styles from "../components/Signup.module.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import api from "../api/axios";
 
 
 
@@ -14,7 +15,7 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://localhost:3000/api/auth/login", {
+      const res = await api.post("/api/auth/login", {
         username,
         password,
       });

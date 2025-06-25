@@ -1,6 +1,7 @@
 import styles from "../components/Contact.module.css";
 import { useState } from "react";
 import axios from "axios";
+import api from "../api/axios";
 
 function Contact(){
 
@@ -21,7 +22,8 @@ function Contact(){
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/api/sendMsg", formData);
+      const res = await api.post("/api/sendMsg", formData);
+
       alert("Message sent successfully!");
       setFormData({ firstName: "", lastName: "", email: "", message: "" });
     } catch (err) {
