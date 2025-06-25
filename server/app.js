@@ -16,7 +16,7 @@ const MONGO_URI = process.env.MONGO_URI ;
 
 app.use(cors(
   {
-    origin:"https://syncnote.onrender.com",
+    origin:"https://syncnote-5am1.onrender.com",
     credentials:true
   }
 ));
