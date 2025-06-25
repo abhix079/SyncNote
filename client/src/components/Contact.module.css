@@ -31,8 +31,9 @@
   width: 100%;
 }
 
-.nameField input {
-  flex: 1;
+
+input:focus,textarea:focus{
+  border: 1px solid orange;
 }
 
 input,
