@@ -11,13 +11,23 @@ html, body {
   height: 100%;
   width: 100%;
   scroll-behavior: smooth;
+  color: inherit;
 }
 
-body {
-  position: relative;
-  background: url(./assets/syncnote_bg.webp) no-repeat center center fixed;
-   /* background: url(./assets/syncnoteDark.webp) no-repeat center center fixed; */
+/* Global background themes */
+body.light-mode {
+  background: url(./assets/syncnote_bg.webp);
+  height: 100%;
+  width: 100%;
+  color: black;
   
-  background-size: cover;
+}
+
+body.dark-mode {
+  background: url(./assets/syncnoteDark.webp) ;
+ height: 100%;
+  width: 100%;
+  color: white;
+  
 }
 

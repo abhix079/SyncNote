@@ -1,12 +1,14 @@
 import styles from "../components/Navbar.module.css";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { GoSun } from "react-icons/go";
+import { IoMoonOutline } from "react-icons/io5";
 import { LuTableOfContents } from "react-icons/lu";
 
 function Navbar() {
   const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -16,6 +18,21 @@ function Navbar() {
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
+
+  const toggleTheme = () => {
+    setDarkMode((prev) => !prev);
+  };
+
+  useEffect(() => {
+    const body = document.body;
+    if (darkMode) {
+      body.classList.add("dark-mode");
+      body.classList.remove("light-mode");
+    } else {
+      body.classList.add("light-mode");
+      body.classList.remove("dark-mode");
+    }
+  }, [darkMode]);
 
   return (
     <>
@@ -30,7 +47,11 @@ function Navbar() {
             <p onClick={() => navigate("/contact")}>Contact Us</p>
           </div>
           <div className={styles.navBtn}>
-            <GoSun size={21} />
+            {darkMode ? (
+              <IoMoonOutline size={21} onClick={toggleTheme} style={{ cursor: "pointer" }} />
+            ) : (
+              <GoSun size={21} onClick={toggleTheme} style={{ cursor: "pointer" }} />
+            )}
             <button className={styles.logBtn} onClick={handleLogout}>
               Logout
             </button>
