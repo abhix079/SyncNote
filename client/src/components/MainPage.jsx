@@ -9,13 +9,14 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 
 
 function MainPage() {
+  const base_url= "https://syncnote-n7r7.onrender.com"; //sever deployed on render
   const [showDialog, setShowDialog] = useState(false);
   const [notes, setNotes] = useState([]);
   const [note, setNote] = useState({ title: "", category: "", description: "" });
   const [editingNoteId, setEditingNoteId] = useState(null);
 
  const fetchNotes = async () => {
-  const res = await axios.get("http://localhost:3000/api/notes");
+  const res = await axios.get(`${base_url}/api/notes`);
   const sortedNotes = res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   setNotes(sortedNotes);
 };
@@ -30,9 +31,9 @@ function MainPage() {
     if (!note.title || !note.description) return;
 
     if (editingNoteId) {
-      await axios.put(`http://localhost:3000/api/notes/${editingNoteId}`, note);
+      await axios.put(`${base_url}/api/notes/${editingNoteId}`, note);
     } else {
-      await axios.post("http://localhost:3000/api/notes", note);
+      await axios.post(`${base_url}/api/notes`, note);
     }
 
     setNote({ title: "", category: "", description: "" });
@@ -48,7 +49,7 @@ function MainPage() {
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:3000/api/notes/${id}`);
+    await axios.delete(`${base_url}/api/notes/${id}`);
     fetchNotes();
   };
 

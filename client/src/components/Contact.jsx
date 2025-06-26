@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 function Contact(){
-
+const base_url= "https://syncnote-n7r7.onrender.com";//server deployed on render
    const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -22,7 +22,7 @@ function Contact(){
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/api/sendMsg", formData);
+      const res = await axios.post(`${base_url}/api/sendMsg`, formData);
 
       alert("Message sent successfully!");
       setFormData({ firstName: "", lastName: "", email: "", message: "" });

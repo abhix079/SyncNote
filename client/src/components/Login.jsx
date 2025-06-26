@@ -7,17 +7,22 @@ import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
-
+const base_url= "https://syncnote-n7r7.onrender.com"; //deployed on render
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://localhost:3000/api/auth/login", {
+      // const res = await axios.post("http://localhost:3000/api/auth/login", {
+      //   username,
+      //   password,
+      // });
+      const res = await axios.post(`${base_url}/api/auth/login`, {
         username,
         password,
       });
+
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       navigate("/home");

@@ -6,6 +6,7 @@ import axios from "axios";
 
 function Signup() {
   const navigate = useNavigate();
+  const base_url= "https://syncnote-n7r7.onrender.com";
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -14,11 +15,18 @@ function Signup() {
 
   const handleSignup = async () => {
   try {
-    const res = await axios.post("http://localhost:3000/api/auth/signup", {
+    // const res = await axios.post("http://localhost:3000/api/auth/signup", {
+    //   username,
+    //   email,
+    //   password,
+    // });
+
+     const res = await axios.post(`${base_url}/api/auth/signup`, {
       username,
       email,
       password,
     });
+
     console.log(res.data);
     navigate("/home");
   } catch (err) {
