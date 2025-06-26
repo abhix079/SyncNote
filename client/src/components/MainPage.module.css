@@ -1,8 +1,10 @@
+
 .addBtn {
   align-items: center;
   justify-content: center;
   display: flex;
   margin: 7vh 0;
+
 }
 
 .addBtn button {
@@ -51,6 +53,7 @@
   z-index: 100;
   width: 90%;
   max-width: 400px;
+  color: black;
 }
 
 .dialog input,
