@@ -54,9 +54,9 @@ function Navbar() {
           </div>
           <div className={styles.navBtn}>
             {darkMode ? (
-              <IoMoonOutline size={21} onClick={toggleTheme} style={{ cursor: "pointer" }} />
-            ) : (
               <GoSun size={21} onClick={toggleTheme} style={{ cursor: "pointer" }} />
+            ) : (
+              <IoMoonOutline size={21} onClick={toggleTheme} style={{ cursor: "pointer" }} />
             )}
             <button className={styles.logBtn} onClick={handleLogout}>
               Logout
