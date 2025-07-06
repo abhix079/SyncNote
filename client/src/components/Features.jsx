@@ -10,7 +10,7 @@ const featuresData = [
     icon: <MdOutlineCloudSync size={50} color="orange" />,
     title: "Cloud Sync",
     desc: [
-      "Your notes are automatically synced across all devices in real time."
+      "Your notes are automatically synced across all devices in real time.",
     ],
   },
   {
@@ -28,13 +28,12 @@ const featuresData = [
     ],
   },
   {
-  icon: <MdColorLens size={50} color="orange" />,
-  title: "Custom Themes",
-  desc: [
-
-    "Create a comfortable and personalized writing space by switching between light and dark modes."
-  ],
-},
+    icon: <MdColorLens size={50} color="orange" />,
+    title: "Custom Themes",
+    desc: [
+      "Create a comfortable and personalized writing space by switching between light and dark modes.",
+    ],
+  },
 ];
 
 function Features() {

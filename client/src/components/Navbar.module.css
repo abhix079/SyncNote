@@ -1,29 +1,23 @@
-
 .logo {
   color: orange;
   font-size: 27px;
   font-weight: 720;
   cursor: pointer;
-
 }
-.mainContainer{
-   position: sticky;
+.mainContainer {
+  position: sticky;
   top: 0;
   z-index: 999;
-
 }
 
 .navbar {
- 
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: row;
   padding: 10px 0;
   /* background: url("../assets/syncnote_bg.webp"); */
- 
 }
-
 
 .navItems {
   display: flex;
@@ -63,7 +57,6 @@
   width: auto;
 }
 
-
 .hamburger {
   display: none;
   cursor: pointer;
@@ -78,24 +71,23 @@
 
 /* Sidebar */
 
-   .sidebar {
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 70vw;
-            background-color: rgba(0, 0, 0, 0.95);
-            color: white;
-           
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-            z-index: 999;
-            animation: slideInRight 0.3s ease forwards;
-        }
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 70vw;
+  background-color: rgba(0, 0, 0, 0.95);
+  color: white;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  z-index: 999;
+  animation: slideInRight 0.3s ease forwards;
+}
 
 .sidebar p {
   font-size: 17px;
@@ -124,31 +116,26 @@
   }
 }
 
-
-
 /*For responsive */
 
 @media (min-width: 320px) and (max-width: 550px) {
- 
-  .logo{
+  .logo {
     font-size: 24px;
   }
-  .navbar{
+  .navbar {
     justify-content: space-around;
     gap: 35vw;
-   
   }
-  .navItems{
-  display: none;
-  }
-  .logBtn{
+  .navItems {
     display: none;
   }
-  .navBtn{
-    gap: 20px;
-   
+  .logBtn {
+    display: none;
   }
-    .navItems {
+  .navBtn {
+    gap: 20px;
+  }
+  .navItems {
     display: none;
   }
 
@@ -159,34 +146,28 @@
   .hamburger {
     display: block;
   }
-
 }
-@media (min-width: 551px) and (max-width: 800px){
-  .logo{
+@media (min-width: 551px) and (max-width: 800px) {
+  .logo {
     font-size: 24px;
   }
-  .contentBtn{
+  .contentBtn {
     display: none;
   }
-  .navBtn{
+  .navBtn {
     gap: 12px;
   }
-  .navBtn button{
+  .navBtn button {
     padding: 5px 11px;
     font-size: 15.4px;
   }
-  .navItems p{
+  .navItems p {
     font-size: 15.4px;
   }
 }
 
-@media (min-width: 801px) and (max-width: 1800px){
-   .contentBtn{
+@media (min-width: 801px) and (max-width: 1800px) {
+  .contentBtn {
     display: none;
-    
-   }
-   
+  }
 }
-
-
-

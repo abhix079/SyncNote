@@ -2,20 +2,20 @@ import styles from "../components/Contact.module.css";
 import { useState } from "react";
 import axios from "axios";
 
-
-function Contact(){
-const base_url= "https://syncnote-n7r7.onrender.com";//server deployed on render
-   const [formData, setFormData] = useState({
+function Contact() {
+  // const base_url= "https://syncnote-n7r7.onrender.com";//server deployed on render
+  const base_url = "http://localhost:3000";
+  const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    message: ""
+    message: "",
   });
 
   const handleChange = (e) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -31,10 +31,9 @@ const base_url= "https://syncnote-n7r7.onrender.com";//server deployed on render
     }
   };
 
-
-    return (
-        <> 
-   <div className={styles.mainHeading}>
+  return (
+    <>
+      <div className={styles.mainHeading}>
         <h2>
           Have any <span>query?</span>
         </h2>
@@ -42,15 +41,43 @@ const base_url= "https://syncnote-n7r7.onrender.com";//server deployed on render
 
       <form onSubmit={handleSubmit} className={styles.contactCard}>
         <div className={styles.nameField}>
-          <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange}  required/>
-          <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange}  />
+          <input
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            value={formData.firstName}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value={formData.lastName}
+            onChange={handleChange}
+          />
         </div>
-        <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required/>
-        <textarea name="message" placeholder="Your query or suggestion" value={formData.message} onChange={handleChange} required />
-        <button type="submit" className={styles.submitBtn}>Send Message</button>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        <textarea
+          name="message"
+          placeholder="Your query or suggestion"
+          value={formData.message}
+          onChange={handleChange}
+          required
+        />
+        <button type="submit" className={styles.submitBtn}>
+          Send Message
+        </button>
       </form>
-        </>
-    );
+    </>
+  );
 }
 
 export default Contact;

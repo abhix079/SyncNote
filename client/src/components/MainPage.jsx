@@ -1,26 +1,38 @@
 import styles from "../components/MainPage.module.css";
 import { PiSmileySad } from "react-icons/pi";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
-
-
-
+import axios from "axios";
 
 function MainPage() {
-  const base_url= "https://syncnote-n7r7.onrender.com"; //sever deployed on render
+  const base_url = "https://syncnote-n7r7.onrender.com";
+
   const [showDialog, setShowDialog] = useState(false);
   const [notes, setNotes] = useState([]);
-  const [note, setNote] = useState({ title: "", category: "", description: "" });
+  const [note, setNote] = useState({
+    title: "",
+    category: "",
+    description: "",
+  });
   const [editingNoteId, setEditingNoteId] = useState(null);
 
- const fetchNotes = async () => {
-  const res = await axios.get(`${base_url}/api/notes`);
-  const sortedNotes = res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-  setNotes(sortedNotes);
-};
+  const fetchNotes = async () => {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
 
+    try {
+      const res = await axios.get(`${base_url}/api/notes`, config);
+      const sortedNotes = res.data.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      setNotes(sortedNotes);
+    } catch (err) {
+      console.error("Error fetching notes:", err);
+    }
+  };
 
   useEffect(() => {
     fetchNotes();
@@ -30,27 +42,49 @@ function MainPage() {
     e.preventDefault();
     if (!note.title || !note.description) return;
 
-    if (editingNoteId) {
-      await axios.put(`${base_url}/api/notes/${editingNoteId}`, note);
-    } else {
-      await axios.post(`${base_url}/api/notes`, note);
-    }
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
 
-    setNote({ title: "", category: "", description: "" });
-    setEditingNoteId(null);
-    setShowDialog(false);
-    fetchNotes();
+    try {
+      if (editingNoteId) {
+        await axios.put(`${base_url}/api/notes/${editingNoteId}`, note, config);
+      } else {
+        await axios.post(`${base_url}/api/notes`, note, config);
+      }
+
+      setNote({ title: "", category: "", description: "" });
+      setEditingNoteId(null);
+      setShowDialog(false);
+      fetchNotes();
+    } catch (err) {
+      console.error("Error saving note:", err);
+    }
   };
 
   const handleEdit = (note) => {
-    setNote({ title: note.title, category: note.category, description: note.description });
+    setNote({
+      title: note.title,
+      category: note.category,
+      description: note.description,
+    });
     setEditingNoteId(note._id);
     setShowDialog(true);
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`${base_url}/api/notes/${id}`);
-    fetchNotes();
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    try {
+      await axios.delete(`${base_url}/api/notes/${id}`, config);
+      fetchNotes();
+    } catch (err) {
+      console.error("Error deleting note:", err);
+    }
   };
 
   const handleCancel = () => {
@@ -95,12 +129,16 @@ function MainPage() {
             <textarea
               placeholder="Description"
               value={note.description}
-              onChange={(e) => setNote({ ...note, description: e.target.value })}
+              onChange={(e) =>
+                setNote({ ...note, description: e.target.value })
+              }
               required
             />
             <div className={styles.dialogButtons}>
               <button type="submit">{editingNoteId ? "Update" : "Save"}</button>
-              <button type="button" onClick={handleCancel}>Cancel</button>
+              <button type="button" onClick={handleCancel}>
+                Cancel
+              </button>
             </div>
           </form>
         </div>
@@ -120,11 +158,18 @@ function MainPage() {
                 <div className={styles.cardHeader}>
                   <span className={styles.timestamp}>
                     {new Date(n.createdAt).toLocaleDateString()} |{" "}
-                    {new Date(n.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                    {new Date(n.createdAt).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
                   </span>
                   <div className={styles.cardActions}>
-                    <button onClick={() => handleEdit(n)}><FaRegEdit size={17} /></button>
-                    <button onClick={() => handleDelete(n._id)}><RiDeleteBin6Line size={17}/></button>
+                    <button onClick={() => handleEdit(n)}>
+                      <FaRegEdit size={17} />
+                    </button>
+                    <button onClick={() => handleDelete(n._id)}>
+                      <RiDeleteBin6Line size={17} />
+                    </button>
                   </div>
                 </div>
                 <h3>{n.title}</h3>
