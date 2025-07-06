@@ -27,7 +27,7 @@ function Signup() {
         autoClose: 3000,
       });
 
-      setTimeout(() => navigate("/login"), 3200);
+      setTimeout(() => navigate("/login"), 1000);
     } catch (err) {
       const { field, message } = err.response?.data || {};
       if (field === "username") {

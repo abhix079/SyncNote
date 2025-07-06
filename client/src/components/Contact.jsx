@@ -1,10 +1,12 @@
 import styles from "../components/Contact.module.css";
 import { useState } from "react";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Contact() {
-  // const base_url= "https://syncnote-n7r7.onrender.com";//server deployed on render
-  const base_url = "http://localhost:3000";
+  const base_url = "https://syncnote-n7r7.onrender.com"; // deployed backend
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -22,17 +24,21 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${base_url}/api/sendMsg`, formData);
-
-      alert("Message sent successfully!");
+      await axios.post(`${base_url}/api/contact`, formData);
+      toast.success("Message sent successfully!");
       setFormData({ firstName: "", lastName: "", email: "", message: "" });
     } catch (err) {
-      alert("Error sending message!");
+      console.error(
+        "Error sending message:",
+        err.response?.data || err.message
+      );
+      toast.error("Failed to send message. Please try again.");
     }
   };
 
   return (
     <>
+      <ToastContainer />
       <div className={styles.mainHeading}>
         <h2>
           Have any <span>query?</span>
