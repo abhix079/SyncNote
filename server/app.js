@@ -1,9 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
-import noteRoutes from "./routes/noteRoute.js";
-import authRoutes from "./routes/authRoute.js";
 import cors from "cors";
 import dotenv from "dotenv";
+
+import noteRoutes from "./routes/noteRoute.js";
+import authRoutes from "./routes/authRoute.js";
+import contactRoutes from "./routes/contactRoutes.js"; // make sure this is correct
 
 dotenv.config();
 
@@ -16,17 +18,21 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api", noteRoutes);
+app.use("/api/contact", contactRoutes); // matches frontend
 
 app.get("/", (req, res) => {
   res.send("Hello from server");
 });
 
 mongoose
-  .connect(MONGO_URI)
+  .connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("MongoDB connected successfully");
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
   })
   .catch((err) => {
-    console.log("MongoDB connection error", err.message);
+    console.error("MongoDB connection error:", err.message);
   });
