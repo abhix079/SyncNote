@@ -59,7 +59,7 @@ function Login() {
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Enter your username"
             onKeyDown={handleKeyDown}
-            required
+            
           />
 
           <p>Password</p>
@@ -69,7 +69,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
             onKeyDown={handleKeyDown}
-            required
+            
           />
 
           {error && <div className={styles.errMsg}>{error}</div>}
