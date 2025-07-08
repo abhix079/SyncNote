@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Contact() {
-  const base_url = "https://syncnote-n7r7.onrender.com"; // deployed backend
+  const base_url = "https://syncnote-n7r7.onrender.com";
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -23,16 +23,25 @@ function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Show success toast instantly
+    toast.success("Message sent!", {
+      autoClose: 1500,
+      position: "top-right",
+    });
+
+    // Copy & reset the form
+    const submittedData = { ...formData };
+    setFormData({ firstName: "", lastName: "", email: "", message: "" });
+
     try {
-      await axios.post(`${base_url}/api/contact`, formData);
-      toast.success("Message sent successfully!");
-      setFormData({ firstName: "", lastName: "", email: "", message: "" });
+      await axios.post(`${base_url}/api/contact`, submittedData);
     } catch (err) {
-      console.error(
-        "Error sending message:",
-        err.response?.data || err.message
-      );
-      toast.error("Failed to send message. Please try again.");
+      console.error("Error sending message:", err.response?.data || err.message);
+      toast.error("Message may not have been sent. Try again.", {
+        autoClose: 2000,
+        position: "top-right",
+      });
     }
   };
 

@@ -2,8 +2,6 @@ import styles from "../components/Signup.module.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useCallback } from "react";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 function Signup() {
   const navigate = useNavigate();
@@ -13,8 +11,12 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSignup = useCallback(async () => {
+    setLoading(true);
+    setError("");
+
     try {
       await axios.post(`${base_url}/api/auth/signup`, {
         username,
@@ -22,12 +24,17 @@ function Signup() {
         password,
       });
 
-      toast.success("User registered successfully! Redirecting to login...", {
-        position: "top-right",
-        autoClose: 3000,
+      const loginRes = await axios.post(`${base_url}/api/auth/login`, {
+        username,
+        password,
       });
 
-      setTimeout(() => navigate("/login"), 1000);
+      const { token } = loginRes.data;
+      if (token) {
+        localStorage.setItem("token", token);
+      }
+
+      navigate("/home");
     } catch (err) {
       const { field, message } = err.response?.data || {};
       if (field === "username") {
@@ -39,8 +46,10 @@ function Signup() {
           setError("Email already exists");
         }
       } else {
-        setError("Signup failed");
+        setError("Signup or login failed");
       }
+    } finally {
+      setLoading(false);
     }
   }, [username, email, password, navigate]);
 
@@ -49,58 +58,57 @@ function Signup() {
   };
 
   return (
-    <>
-      <ToastContainer />
-      <div className={styles.mainContainer}>
-        <div className={styles.heading}>
-          <h1>
-            Welcome to <span>SyncNote !!</span>
-          </h1>
-          <p>Your cloud-based note app</p>
+    <div className={styles.mainContainer}>
+      <div className={styles.heading}>
+        <h1>
+          Welcome to <span>SyncNote !!</span>
+        </h1>
+        <p>Your cloud-based note app</p>
+      </div>
+      <div className={styles.card}>
+        <h2>Create Account</h2>
+        <div className={styles.formDetails}>
+          <p>Username</p>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter your username"
+            onKeyDown={handleKeyDown}
+          />
+
+          <p>Email</p>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email-id"
+            onKeyDown={handleKeyDown}
+            required
+          />
+
+          <p>Password</p>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
+            onKeyDown={handleKeyDown}
+          />
+
+          {error && <div className={styles.errMsg}>{error}</div>}
         </div>
-        <div className={styles.card}>
-          <h2>Create Account</h2>
-          <div className={styles.formDetails}>
-            <p>Username</p>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your username"
-              onKeyDown={handleKeyDown}
-            />
 
-            <p>Email</p>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email-id"
-              onKeyDown={handleKeyDown}
-              required
-            />
+        <button onClick={handleSignup} disabled={loading}>
+          {loading ? "Signing Up..." : "Sign Up"}
+        </button>
 
-            <p>Password</p>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              onKeyDown={handleKeyDown}
-            />
-
-            {error && <div className={styles.errMsg}>{error}</div>}
-          </div>
-
-          <button onClick={handleSignup}>Sign Up</button>
-
-          <div className={styles.footer}>
-            Already have an account?{" "}
-            <span onClick={() => navigate("/login")}>Log in</span>
-          </div>
+        <div className={styles.footer}>
+          Already have an account?{" "}
+          <span onClick={() => navigate("/login")}>Log in</span>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

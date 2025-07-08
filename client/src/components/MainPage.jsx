@@ -7,28 +7,19 @@ import axios from "axios";
 
 function MainPage() {
   const base_url = "https://syncnote-n7r7.onrender.com";
-
   const [showDialog, setShowDialog] = useState(false);
   const [notes, setNotes] = useState([]);
-  const [note, setNote] = useState({
-    title: "",
-    category: "",
-    description: "",
-  });
+  const [note, setNote] = useState({ title: "", category: "", description: "" });
   const [editingNoteId, setEditingNoteId] = useState(null);
 
-  const fetchNotes = async () => {
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
+  const token = localStorage.getItem("token");
+  const config = { headers: { Authorization: `Bearer ${token}` } };
 
+  const fetchNotes = async () => {
     try {
       const res = await axios.get(`${base_url}/api/notes`, config);
-      const sortedNotes = res.data.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      );
-      setNotes(sortedNotes);
+      const sorted = res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      setNotes(sorted.reverse());
     } catch (err) {
       console.error("Error fetching notes:", err);
     }
@@ -42,24 +33,46 @@ function MainPage() {
     e.preventDefault();
     if (!note.title || !note.description) return;
 
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-
-    try {
-      if (editingNoteId) {
+    if (editingNoteId) {
+      // Optimistic update
+      setNotes((prev) =>
+        prev.map((n) =>
+          n._id === editingNoteId ? { ...n, ...note, updatedAt: new Date() } : n
+        )
+      );
+      setNote({ title: "", category: "", description: "" });
+      setEditingNoteId(null);
+      setShowDialog(false);
+      try {
         await axios.put(`${base_url}/api/notes/${editingNoteId}`, note, config);
-      } else {
-        await axios.post(`${base_url}/api/notes`, note, config);
+      } catch (err) {
+        console.error("Update failed:", err);
+        fetchNotes();
       }
+    } else {
+      const tempId = Date.now().toString();
+      const tempNote = {
+        ...note,
+        _id: tempId,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+
+      setNotes((prev) => [tempNote, ...prev]);
 
       setNote({ title: "", category: "", description: "" });
       setEditingNoteId(null);
       setShowDialog(false);
-      fetchNotes();
-    } catch (err) {
-      console.error("Error saving note:", err);
+
+      try {
+        const res = await axios.post(`${base_url}/api/notes`, note, config);
+        setNotes((prev) =>
+          prev.map((n) => (n._id === tempId ? res.data.note : n))
+        );
+      } catch (err) {
+        console.error("Creation failed:", err);
+        fetchNotes();
+      }
     }
   };
 
@@ -74,16 +87,13 @@ function MainPage() {
   };
 
   const handleDelete = async (id) => {
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-
+    const prev = [...notes];
+    setNotes((prev) => prev.filter((n) => n._id !== id));
     try {
       await axios.delete(`${base_url}/api/notes/${id}`, config);
-      fetchNotes();
     } catch (err) {
-      console.error("Error deleting note:", err);
+      console.error("Delete failed:", err);
+      setNotes(prev); // rollback
     }
   };
 
@@ -129,9 +139,7 @@ function MainPage() {
             <textarea
               placeholder="Description"
               value={note.description}
-              onChange={(e) =>
-                setNote({ ...note, description: e.target.value })
-              }
+              onChange={(e) => setNote({ ...note, description: e.target.value })}
               required
             />
             <div className={styles.dialogButtons}>
