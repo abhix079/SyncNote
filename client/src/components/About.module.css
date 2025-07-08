@@ -5,7 +5,7 @@
 }
 
 .mainHeading span {
-  color: orange;
+  color: #4F46E5;
 }
 
 .aboutSection {
@@ -31,6 +31,7 @@
   .mainHeading {
     font-size: 15px;
   }
+
   .aboutSection {
     margin: 0 10px;
   }
@@ -40,6 +41,7 @@
   .mainHeading {
     font-size: 16px;
   }
+
   .aboutSection {
     margin: 0 30px;
   }

@@ -5,7 +5,7 @@
 }
 
 .mainHeading h2 span {
-  color: orange;
+  color: #4F46E5;
 }
 
 .contactCard {
@@ -33,7 +33,7 @@
 
 input:focus,
 textarea:focus {
-  border: 1px solid orange;
+  border: 1px solid #4F46E5;
 }
 
 input,
@@ -54,8 +54,8 @@ textarea {
 }
 
 .submitBtn {
-  background-color: orange;
-  color: black;
+  background-color: #4F46E5;
+  color: white;
   font-weight: 500;
   padding: 8px 15px;
   border: none;
@@ -64,7 +64,6 @@ textarea {
   cursor: pointer;
 }
 
-/*For responsive*/
 @media (min-width: 320px) and (max-width: 550px) {
   .mainHeading {
     font-size: 16px;
@@ -74,10 +73,12 @@ textarea {
     width: 85vw;
     padding: 30px 20px;
   }
+
   textarea {
     height: 20vh;
   }
 }
+
 @media (min-width: 551px) and (max-width: 850px) {
   .mainHeading {
     font-size: 17px;

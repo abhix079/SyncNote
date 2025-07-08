@@ -1,9 +1,10 @@
 .logo {
-  color: orange;
+  color: #4F46E5;
   font-size: 27px;
   font-weight: 720;
   cursor: pointer;
 }
+
 .mainContainer {
   position: sticky;
   top: 0;
@@ -16,7 +17,6 @@
   justify-content: space-around;
   flex-direction: row;
   padding: 10px 0;
-  /* background: url("../assets/syncnote_bg.webp"); */
 }
 
 .navItems {
@@ -40,8 +40,8 @@
 }
 
 .navBtn button {
-  background-color: orange;
-  color: black;
+  background-color: #4F46E5;
+  color: white;
   padding: 7px 15px;
   font-size: 16.4px;
   border-radius: 20px;
@@ -69,8 +69,6 @@
   opacity: 0.7;
 }
 
-/* Sidebar */
-
 .sidebar {
   position: fixed;
   top: 0;
@@ -79,7 +77,6 @@
   width: 70vw;
   background-color: rgba(0, 0, 0, 0.95);
   color: white;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -116,51 +113,51 @@
   }
 }
 
-/*For responsive */
-
 @media (min-width: 320px) and (max-width: 550px) {
   .logo {
     font-size: 24px;
   }
+
   .navbar {
     justify-content: space-around;
     gap: 35vw;
   }
-  .navItems {
-    display: none;
-  }
-  .logBtn {
-    display: none;
-  }
-  .navBtn {
-    gap: 20px;
-  }
+
   .navItems {
     display: none;
   }
 
   .logBtn {
     display: none;
+  }
+
+  .navBtn {
+    gap: 20px;
   }
 
   .hamburger {
     display: block;
   }
 }
+
 @media (min-width: 551px) and (max-width: 800px) {
   .logo {
     font-size: 24px;
   }
+
   .contentBtn {
     display: none;
   }
+
   .navBtn {
     gap: 12px;
   }
+
   .navBtn button {
     padding: 5px 11px;
     font-size: 15.4px;
   }
+
   .navItems p {
     font-size: 15.4px;
   }
