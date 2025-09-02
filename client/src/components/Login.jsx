@@ -5,7 +5,7 @@ import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
-  const base_url = "https://syncnote-n7r7.onrender.com";
+  const base_url = "https://syncnote-wldj.onrender.com";
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

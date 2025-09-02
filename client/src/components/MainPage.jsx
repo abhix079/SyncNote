@@ -6,7 +6,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import axios from "axios";
 
 function MainPage() {
-  const base_url = "https://syncnote-n7r7.onrender.com";
+  const base_url = "https://syncnote-wldj.onrender.com";
   const [showDialog, setShowDialog] = useState(false);
   const [notes, setNotes] = useState([]);
   const [note, setNote] = useState({ title: "", category: "", description: "" });
