@@ -24,6 +24,12 @@ app.get("/", (req, res) => {
   res.send("Hello from server");
 });
 
+app.get("/ping",(req,res)=>{
+  res.status(200).json({
+    message:"Backend is pinging successfully"
+  })
+})
+
 mongoose
   .connect(MONGO_URI, {
     useNewUrlParser: true,

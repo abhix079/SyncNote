@@ -15,6 +15,12 @@ import Contact from "./components/Contact";
 import Features from "./components/Features";
 
 function AppLayout() {
+  useEffect(() => {
+    // Hit backend once when user opens site
+    fetch("https://syncnote-wldj.onrender.com/ping")
+      .then(() => console.log("Backend warmed up"))
+      .catch(() => {});
+  }, []);
   const location = useLocation();
   const hideNavOnRoute = ["/", "/login", "/signup"];
   const hideNav = hideNavOnRoute.includes(location.pathname);
